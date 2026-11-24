@@ -37,6 +37,10 @@ def main():
         os.makedirs(out_dir, exist_ok=True)
     with open(out_path, "w", encoding="utf-8") as f:
         f.write(SENTENCE)
+    # Read back what was written: the gate counts every character,
+    # so the file on disk must be byte-identical to the sentence.
+    with open(out_path, "r", encoding="utf-8") as f:
+        assert f.read() == SENTENCE, "entry.txt differs from SENTENCE"
 
 
 if __name__ == "__main__":
